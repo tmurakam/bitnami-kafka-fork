@@ -3,7 +3,7 @@
 
 services:
   kafka:
-    image: docker.io/bitnami/kafka:4.0
+    image: tmurakam/kafka:4.0.0
     ports:
       - "9092:9092"
     volumes:

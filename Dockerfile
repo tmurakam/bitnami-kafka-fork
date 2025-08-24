@@ -4,6 +4,7 @@
 #FROM debian:bookworm
 FROM debian:sid-slim
 
+ARG JAVA_EXTRA_SECURITY_DIR="/bitnami/java/extra-security"
 ARG TARGETARCH
 
 ENV HOME="/" \

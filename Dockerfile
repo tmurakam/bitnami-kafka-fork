@@ -3,8 +3,6 @@
 
 FROM debian:bookworm
 
-ARG DOWNLOADS_URL="downloads.bitnami.com/files/stacksmith"
-ARG JAVA_EXTRA_SECURITY_DIR="/bitnami/java/extra-security"
 ARG TARGETARCH
 
 ENV HOME="/" \
@@ -19,21 +17,13 @@ RUN install_packages ca-certificates curl procps zlib1g
 
 RUN install_packages openjdk-17-jre-headless
 
-RUN --mount=type=secret,id=downloads_url,env=SECRET_DOWNLOADS_URL \
-    DOWNLOADS_URL=${SECRET_DOWNLOADS_URL:-${DOWNLOADS_URL}} ; \
+RUN mkdir -p /opt/bitnami/kafka/ ; \
     mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
-    COMPONENTS=( \
-      "kafka-4.0.0-0-linux-${OS_ARCH}-debian-12" \
-    ) ; \
-    for COMPONENT in "${COMPONENTS[@]}"; do \
-      if [ ! -f "${COMPONENT}.tar.gz" ]; then \
-        curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz" -O ; \
-        curl -SsLf "https://${DOWNLOADS_URL}/${COMPONENT}.tar.gz.sha256" -O ; \
-      fi ; \
-      sha256sum -c "${COMPONENT}.tar.gz.sha256" ; \
-      tar -zxf "${COMPONENT}.tar.gz" -C /opt/bitnami --strip-components=2 --no-same-owner ; \
-      rm -rf "${COMPONENT}".tar.gz{,.sha256} ; \
-    done
+    COMPONENT=kafka_2.13-4.0.0.tgz; \
+    curl -sSL -O "https://dlcdn.apache.org/kafka/4.0.0/${COMPONENT}"; \
+    tar -zxf "${COMPONENT}" -C /opt/bitnami/kafka --strip-components=1 --no-same-owner ; \
+    rm -rf "${COMPONENT}"
+
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 RUN chmod g+rwX /opt/bitnami

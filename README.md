@@ -6,7 +6,7 @@ As the official Legacy Bitnami image is no longer maintained, this fork allows i
 ## Features
 
 - Supports Kafka 4.x and above (KRaft mode only)
-- Based on debian:bookworm image
+- Based on debian:sid-slim image
 - Uses Official Apache Kafka directly (no dependency on Bitnami container)
 
 ## Build Instructions

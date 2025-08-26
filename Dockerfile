@@ -1,7 +1,8 @@
 # Copyright Broadcom, Inc. All Rights Reserved.
 # SPDX-License-Identifier: APACHE-2.0
 
-FROM debian:bookworm
+#FROM debian:bookworm
+FROM debian:sid-slim
 
 ARG TARGETARCH
 

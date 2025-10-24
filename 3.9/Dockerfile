@@ -38,8 +38,7 @@ RUN /opt/bitnami/scripts/java/postunpack.sh
 RUN /opt/bitnami/scripts/kafka/postunpack.sh
 ENV APP_VERSION="3.9.1" \
     BITNAMI_APP_NAME="kafka" \
-    JAVA_HOME="/opt/bitnami/java" \
-    PATH="/opt/bitnami/common/bin:/opt/bitnami/java/bin:/opt/bitnami/kafka/bin:$PATH"
+    PATH="/opt/bitnami/kafka/bin:$PATH"
 
 EXPOSE 9092
 

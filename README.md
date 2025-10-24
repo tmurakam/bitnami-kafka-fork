@@ -1,6 +1,7 @@
 # Forked Bitnami Kafka Docker Image
 
-This repository provides a forked version of the Bitnami Kafka Docker image.  
+This repository provides a forked version of the [Bitnami Kafka Docker image](https://github.com/bitnami/containers/tree/main/bitnami/kafka).
+
 As the official Legacy Bitnami image is no longer maintained, this fork allows independent maintenance and customization.
 
 ## Features
